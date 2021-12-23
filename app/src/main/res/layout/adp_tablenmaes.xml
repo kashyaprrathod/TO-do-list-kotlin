@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:weightSum="1"
+    android:layout_height="?actionBarSize">
+
+    <LinearLayout
+        android:layout_weight="0.1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="5"
+            
+            android:textSize="16sp"
+            android:gravity="center"
+            android:id="@+id/tv_remainingcount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="0.9"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="abc"
+            android:gravity="center"
+            android:id="@+id/tv_tabelname"
+            
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
