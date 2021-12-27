@@ -6,14 +6,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.result.ActivityResultCallback
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kotlin.todolist.R
 import com.kotlin.todolist.adapters.TaskListAdapter
-import com.kotlin.todolist.adapters.TodoListAdapter
 import com.kotlin.todolist.dbts.EntitiesDatabase
 import com.kotlin.todolist.dbts.JobEntities
+import com.kotlin.todolist.utils.SharedPrefHelpers
 import com.kotlin.todolist.utils.Utils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_task_list.*
@@ -30,8 +30,21 @@ class TaskListActivity : AppCompatActivity() {
             getData()
         })
 
+    var isFadding = false;
+    var largeFont = false;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        largeFont = SharedPrefHelpers.getInstabce(MainActivity@this).getLargeFont()
+
+        if(SharedPrefHelpers.getInstabce(MainActivity@this).getDarkMode()){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+
+        setUi();
+
         setContentView(R.layout.activity_task_list)
 
         listName = intent.getStringExtra(Utils.PATHINTENT).toString();
@@ -42,6 +55,12 @@ class TaskListActivity : AppCompatActivity() {
 
         Listner();
 
+    }
+    private fun setUi() {
+        if(largeFont)
+            setTheme(R.style.smallfont)
+        else
+            setTheme(R.style.largefont)
     }
 
     private fun Listner() {
@@ -72,7 +91,7 @@ class TaskListActivity : AppCompatActivity() {
 
         } else {
             if (!::adp_list.isInitialized) {
-                adp_list = TaskListAdapter(data);
+                adp_list = TaskListAdapter(data,isFadding);
                 rv_tasklist.adapter = adp_list;
                 rv_tasklist.layoutManager = LinearLayoutManager(this)
                 adp_list.setOnTaskClickListner(object : TaskListAdapter.onTaskClickListner {

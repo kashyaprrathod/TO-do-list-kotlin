@@ -17,6 +17,7 @@
             android:layout_height="?actionBarSize">
 
             <TextView
+                android:textSize="?attr/headingText"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="Do this"
@@ -25,6 +26,7 @@
                 android:layout_height="match_parent"/>
 
             <ImageView
+                android:id="@+id/iv_settings"
                 android:layout_weight="0.1"
                 android:src="@drawable/ic_settings"
                 android:layout_width="0dp"
@@ -51,8 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="No List"
-                    
-                    android:textSize="22sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -70,18 +71,16 @@
                     <TextView
                         android:id="@+id/tv_prg"
                         android:gravity="center"
-                        android:textSize="16sp"
-                        
+                        android:textSize="?attr/details"
                         android:text="0/8"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"/>
 
                     <TextView
+                        android:textSize="?attr/details"
                         android:id="@+id/tv_prgperc"
                         android:gravity="center"
-                        android:textSize="16sp"
                         android:layout_marginLeft="@dimen/_10sdp"
-                        
                         android:text="(100%)"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"/>

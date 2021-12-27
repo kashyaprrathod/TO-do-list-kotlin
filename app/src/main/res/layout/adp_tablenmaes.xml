@@ -11,8 +11,8 @@
 
         <TextView
             android:text="5"
-            
-            android:textSize="16sp"
+            android:textSize="?attr/details"
+
             android:gravity="center"
             android:id="@+id/tv_remainingcount"
             android:layout_width="match_parent"
@@ -29,8 +29,8 @@
             android:text="abc"
             android:gravity="center"
             android:id="@+id/tv_tabelname"
-            
-            android:textSize="16sp"
+            android:textSize="?attr/details"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

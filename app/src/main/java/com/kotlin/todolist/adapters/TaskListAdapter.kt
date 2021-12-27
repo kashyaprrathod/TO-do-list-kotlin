@@ -1,5 +1,6 @@
 package com.kotlin.todolist.adapters
 
+import android.graphics.Color
 import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kotlin.todolist.databinding.AdpTasklistBinding
 import com.kotlin.todolist.dbts.JobEntities
 
-class TaskListAdapter(var arl_data : List<JobEntities>) : RecyclerView.Adapter<TaskListAdapter.Vholder>() {
+class TaskListAdapter(var arl_data : List<JobEntities>,var isFadding:Boolean) : RecyclerView.Adapter<TaskListAdapter.Vholder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Vholder {
         return Vholder(AdpTasklistBinding.inflate(LayoutInflater.from(parent.context),parent,false))
@@ -27,6 +28,11 @@ class TaskListAdapter(var arl_data : List<JobEntities>) : RecyclerView.Adapter<T
 
             if(arl_data.get(position).status){
                 binding.tv.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG;
+                if(isFadding){
+                    binding.tv.setTextColor(Color.LTGRAY)
+                }else{
+                    binding.tv.setTextColor(Color.BLACK)
+                }
             }else{
                 binding.tv.paintFlags = Paint.ANTI_ALIAS_FLAG;
             }

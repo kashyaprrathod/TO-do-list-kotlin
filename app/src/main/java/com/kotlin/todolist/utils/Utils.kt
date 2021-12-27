@@ -6,8 +6,4 @@ class Utils(){
         var PATHINTENT = "PATHINTENT";
     }
 
-    init {
-
-    }
-
 }

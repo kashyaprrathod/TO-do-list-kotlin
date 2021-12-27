@@ -15,6 +15,7 @@ import com.kotlin.todolist.R
 import com.kotlin.todolist.adapters.TodoListAdapter
 import com.kotlin.todolist.dbts.EntitiesDatabase
 import com.kotlin.todolist.models.ToDoListModel
+import com.kotlin.todolist.utils.SharedPrefHelpers
 import com.kotlin.todolist.utils.Utils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.CoroutineScope
@@ -30,11 +31,21 @@ class MainActivity : AppCompatActivity() {
 //            }
         })
 
+
+    var largeFont = false;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        largeFont = SharedPrefHelpers.getInstabce(MainActivity@this).getLargeFont()
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        if(SharedPrefHelpers.getInstabce(MainActivity@this).getDarkMode()){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+        setUi();
+
+        setContentView(R.layout.activity_main)
 
         Listners();
 
@@ -42,9 +53,22 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun setUi() {
+        if(largeFont)
+            setTheme(R.style.smallfont)
+        else
+            setTheme(R.style.largefont)
+    }
+
     private fun Listners() {
         fab_addlist.setOnClickListener(View.OnClickListener {
             createNewtask.launch(Intent(this, CreateNewToDoActivity::class.java))
+        })
+
+        iv_settings.setOnClickListener(View.OnClickListener {
+
+            startActivity(Intent(MainActivity@this,SettingsActivity::class.java))
+
         })
     }
 

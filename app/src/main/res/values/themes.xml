@@ -14,5 +14,22 @@
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/black</item>
         <item name="tint">@color/black</item>
+
     </style>
+
+    <style name="smallfont" parent="Theme.TodoList">
+        <item name="headingText">18sp</item>
+        <item name="details">16sp</item>
+    </style>
+
+    <style name="largefont" parent="Theme.TodoList">
+        <item name="headingText">22sp</item>
+        <item name="details">18sp</item>
+    </style>
+
+
+
+
+
+
 </resources>
