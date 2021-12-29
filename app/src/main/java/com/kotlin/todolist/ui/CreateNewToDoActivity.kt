@@ -3,9 +3,11 @@ package com.kotlin.todolist.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatDelegate
 import com.kotlin.todolist.R
 import com.kotlin.todolist.dbts.EntitiesDatabase
 import com.kotlin.todolist.dbts.JobEntities
+import com.kotlin.todolist.utils.SharedPrefHelpers
 import com.kotlin.todolist.utils.Utils
 import kotlinx.android.synthetic.main.activity_create_new_to_do.*
 import kotlinx.coroutines.CoroutineScope
@@ -25,12 +27,21 @@ class CreateNewToDoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_new_to_do)
 
+        changeTheme()
         name = intent.getStringExtra(Utils.PATHINTENT);
 
         name?.let { fetchData(it) }
 
         Listners();
 
+    }
+
+    private fun changeTheme() {
+        if(SharedPrefHelpers.getInstabce(MainActivity@this).getDarkMode()){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
     private fun fetchData(name: String) {

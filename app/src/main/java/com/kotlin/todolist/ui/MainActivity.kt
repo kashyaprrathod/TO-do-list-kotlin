@@ -33,16 +33,21 @@ class MainActivity : AppCompatActivity() {
 
 
     var largeFont = false;
+    var isFadded = false;
+
+
+    override fun onResume() {
+        super.onResume()
+        isFadded = SharedPrefHelpers.getInstabce(MainActivity@this).getFaddedLine()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         largeFont = SharedPrefHelpers.getInstabce(MainActivity@this).getLargeFont()
 
-        if(SharedPrefHelpers.getInstabce(MainActivity@this).getDarkMode()){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        }else{
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
+        chenageTheme();
+
         setUi();
 
         setContentView(R.layout.activity_main)
@@ -51,6 +56,14 @@ class MainActivity : AppCompatActivity() {
 
         createToDoList();
 
+    }
+
+    private fun chenageTheme() {
+        if(SharedPrefHelpers.getInstabce(MainActivity@this).getDarkMode()){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
     private fun setUi() {

@@ -37,11 +37,9 @@ class TaskListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         largeFont = SharedPrefHelpers.getInstabce(MainActivity@this).getLargeFont()
 
-        if(SharedPrefHelpers.getInstabce(MainActivity@this).getDarkMode()){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        }else{
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
+        isFadding = SharedPrefHelpers.getInstabce(MainActivity@this).getFaddedLine()
+
+        changeTheme()
 
         setUi();
 
@@ -71,6 +69,14 @@ class TaskListActivity : AppCompatActivity() {
             launcher.launch(i)
 
         })
+    }
+
+    private fun changeTheme() {
+        if(SharedPrefHelpers.getInstabce(MainActivity@this).getDarkMode()){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
     private fun getData() {
